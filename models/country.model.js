@@ -1,5 +1,4 @@
 import pool from "../config/db.js";
-// (name, capital, region, population, currency)
 
 export const createTable = async () => {
 	try {
@@ -66,6 +65,20 @@ export const getByRegion = async (region) => {
 			SELECT * FROM countries WHERE region = $1
 			`,
 			[region],
+		);
+		return result.rows;
+	} catch (err) {
+		console.error(err);
+	}
+};
+
+export const getByPopulation = async (population_gte) => {
+	try {
+		const result = await pool.query(
+			`
+			SELECT * FROM countries WHERE population >= $1
+			`,
+			[population_gte],
 		);
 		return result.rows;
 	} catch (err) {
