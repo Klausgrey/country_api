@@ -2,6 +2,7 @@ import express from "express";
 import { seedCountries } from "./seed.js";
 import countryRouter from "./routes/countries.route.js";
 import errorHandler from "./middleware/error.middleware.js";
+import "./config/redis.js";
 
 const app = express();
 app.use(express.json());
